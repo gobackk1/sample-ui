@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    html {
+      overflow-y: scroll;
+    }
+
+    html.drawerOpen {
+      overflow: hidden;
+    }
+
+    .close-btn,
+    .open-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 0;
+      width: 50px;
+      height: 50px;
+      background: transparent;
+      border: 0px solid;
+    }
+
+    .open-btn {
+      z-index: 10;
+    }
+
+    .open-btn__line {
+      display: block;
+      background: #000;
+      width: 100%;
+      height: 4px;
+    }
+
+    .open-btn__line:first-child,
+    .open-btn__line:nth-child(2) {
+      margin-bottom: 10px;
+    }
+
+    .open-btn__line:last-child {
+      margin-bottom: 0;
+    }
+
+    .close-btn__line {
+      display: block;
+      background: #fff;
+      width: 100%;
+      height: 4px;
+    }
+
+    .close-btn__line:first-child {
+      position: absolute;
+      transform: rotate(45deg);
+    }
+
+    .close-btn__line:last-child {
+      position: absolute;
+      transform: rotate(135deg);
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 11;
+    }
+
+    .drawer__overlay {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .drawer__nav {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 400px;
+      height: 100%;
+      background: #ff8c78;
+      overflow: auto;
+    }
+
+    .drawer[aria-expanded] {
+      transition: visibility 0.25s;
+    }
+
+    .drawer[aria-expanded] .drawer__overlay {
+      transition: opacity 0.25s linear;
+    }
+
+    .drawer[aria-expanded] .drawer__nav {
+      transition: transform 0.25s ease;
+    }
+
+    .drawer[aria-expanded=true] {
+      visibility: visible;
+      transition-duration: 0s;
+    }
+
+    .drawer[aria-expanded=true] .drawer__overlay {
+      opacity: 1;
+    }
+
+    .drawer[aria-expanded=true] .drawer__nav {
+      transform: translateX(0);
+    }
+
+    .drawer[aria-expanded=false] {
+      visibility: hidden;
+    }
+
+    .drawer[aria-expanded=false] .drawer__overlay {
+      opacity: 0;
+    }
+
+    .drawer[aria-expanded=false] .drawer__nav {
+      transform: translateX(100%);
+    }
+
+    @media (max-width: 768px) {
+      .open-btn {
+        top: 17px;
+        right: 10px;
+      }
+
+      .drawer__nav {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body class="scrollbarFix">
+  <header class="header scrollbarFix">
+    <h1>タイトル</h1>
+  </header>
+  <button class="open-btn" aria-expanded="false" aria-controls="drawer" type="button">
+    <span class="open-btn__line"></span>
+    <span class="open-btn__line"></span>
+    <span class="open-btn__line"></span>
+  </button>
+  <div class="drawer" aria-expanded="false" id="drawer">
+    <div class="drawer__overlay"></div>
+    <nav class="drawer__nav nav">
+      <button class="close-btn" aria-expanded="false" aria-controls="drawer" type="button">
+        <span class="close-btn__line"></span>
+        <span class="close-btn__line"></span>
+      </button>
+      <ul class="nav__list">
+        <li class="nav__item"><a href="#1">下層</a></li>
+        <li class="nav__item"><a href="#2">下層</a></li>
+        <li class="nav__item"><a href="#3">下層</a></li>
+      </ul>
+    </nav>
+  </div>
+  <main>
+    <h2>h2タイトル</h2>
+    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+    <h2>h2タイトル</h2>
+    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+    <h2>h2タイトル</h2>
+    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+    <h2>h2タイトル</h2>
+    <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script>
+    var $body = $('body');
+    var $html = $('html');
+    var $openBtn = $body.find('.open-btn');
+    var $closeBtn = $body.find('.close-btn');
+    var $drawer = $body.find('.drawer');
+    var $drawerOverlay = $body.find('.drawer__overlay');
+    var drawerOpen = false; //ドロワーが開いてたらtrue
+    var $scrollbarFixTargets = $('.scrollbarFix');
+    var scrollbarFix = false;
+    var scrollLockModifier = 'drawerOpen';
+    var tabbableElements = $drawer.find('a[href],button:not(:disabled)');
+    var firstTabbable = tabbableElements[0];
+    var lastTabbable = tabbableElements[tabbableElements.length - 1];
+
+    function changeAriaExpanded(state) {
+      var value = state ? 'true' : 'false';
+      $drawer.attr('aria-expanded', value);
+      $openBtn.attr('aria-expanded', value);
+      $closeBtn.attr('aria-expanded', value);
+    }
+
+    function changeState(state) {
+      if (state === drawerOpen) {
+        return;
+      }
+      changeAriaExpanded(state);
+      drawerOpen = state;
+    }
+
+    function openDrawer() {
+      changeState(true);
+    }
+
+    function closeDrawer() {
+      changeState(false);
+    }
+
+    function addScrollbarWidth() {
+      var scrollbarWidth = window.innerWidth - $(window).width();
+      if (!scrollbarWidth) {
+        scrollbarFix = false;
+        return;
+      }
+      addScrollbarMargin(scrollbarWidth);
+      scrollbarFix = true;
+    }
+
+    function removeScrollbarWidth() {
+      if (!scrollbarFix) {
+        return;
+      }
+      addScrollbarMargin(0);
+    }
+
+    function addScrollbarMargin(value) {
+      $scrollbarFixTargets.css('margin-right', value + "px")
+    }
+
+    function activateScrollLock() {
+      addScrollbarWidth();
+      $html.addClass(scrollLockModifier);
+    }
+
+    function deactivateScrollLock() {
+      removeScrollbarWidth();
+      $html.removeClass(scrollLockModifier);
+    }
+
+    function onClickOpenBtn() {
+      openDrawer();
+      activateScrollLock();
+    }
+
+    function onClickCloseBtn() {
+      closeDrawer();
+      deactivateScrollLock();
+      $openBtn.focus();
+    }
+
+    function onKeydownTabKeyFirstTabbable(event) {
+      if (event.key !== "Tab" || !event.shiftKey) {
+        return;
+      }
+      event.preventDefault();
+      lastTabbable.focus();
+    }
+
+    function onKeydownTabKeyLastTabbable(event) {
+      if (event.key !== "Tab" || event.shiftKey) {
+        return;
+      }
+      event.preventDefault();
+      firstTabbable.focus();
+    }
+
+    function onKeydownEsc(event) {
+      if (!drawerOpen || event.key !== "Escape") {
+        return;
+      }
+      event.preventDefault();
+      onClickCloseBtn()
+    }
+
+    $(window).on('keydown', onKeydownEsc);
+    $(firstTabbable).on('keydown', onKeydownTabKeyFirstTabbable);
+    $(lastTabbable).on('keydown', onKeydownTabKeyLastTabbable);
+    $openBtn.on('click', onClickOpenBtn);
+    $closeBtn.on('click', onClickCloseBtn);
+    $drawerOverlay.on('click', onClickCloseBtn);
+
+  </script>
+
+</body>
+</html>

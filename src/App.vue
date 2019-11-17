@@ -1,32 +1,37 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <Layout>
+      <Header slot="header"/>
+      <Nav slot="nav"/>
+      <router-view slot="main"/>
+      <Footer slot="footer"/>
+    </Layout>
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  #app{
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+</style>
+<script>
+// import $ from 'jquery'
+import Header from '@/components/Header'
+import Nav from '@/components/Nav'
+import Footer from '@/components/Footer'
+import Layout from '@/components/Layout'
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default {
+  mounted: function() {
+    //  $('#btn').click(function() {
+    //      $("#hogehoge").text("テキスト挿入");
+    //  });
+  },
+  components:{
+    Header,
+    Nav,
+    Footer,
+    Layout,
   }
 }
-</style>
+</script>
